@@ -12,7 +12,7 @@ void* fun1(){
 }
 
 void* fun2(){
-    sleep(2);
+    // sleep(2);
     printf("Value of x: %d.\n",x);
 }
 
