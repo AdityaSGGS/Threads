@@ -20,12 +20,18 @@ void * fun(){
 
 int main(int argc, char const *argv[])
 {
-    pthread_t t1,t2;
+    pthread_t arr[4];
     pthread_mutex_init(&mutex,NULL);
-    pthread_create(&t1,NULL,&fun,NULL);
-    pthread_create(&t2,NULL,&fun,NULL);
-    pthread_join(t1,NULL);
-    pthread_join(t2,NULL);
+    int i;
+    for(i=0;i<4;i++){
+        pthread_create(arr+i,NULL,&fun,NULL);
+        printf("Thread %d created.\n",i+1);
+    }
+
+    for(i=0;i<4;i++){
+        pthread_join(arr[i],NULL);
+        printf("Thread %d exited.\n",i+1);
+    }
     pthread_mutex_destroy(&mutex);
     printf("Value of x is: %d.\n",x);
     return 0;
